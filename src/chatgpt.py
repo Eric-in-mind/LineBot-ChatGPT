@@ -8,7 +8,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 class ChatGPT:
     def __init__(self):
         self.prompt = Prompt()
-        self.model = os.getenv("OPENAI_MODEL", default = "text-davinci-003")
+        self.model = os.getenv("OPENAI_MODEL", default = "gpt-3.5-turbo")
         #self.model = os.getenv("OPENAI_MODEL", default = "chatbot")
         self.temperature = float(os.getenv("OPENAI_TEMPERATURE", default = 0))
         self.frequency_penalty = float(os.getenv("OPENAI_FREQUENCY_PENALTY", default = 0))
@@ -17,7 +17,8 @@ class ChatGPT:
 
     def get_response(self):
         response = openai.Completion.create(
-            model=self.model,
+            #model=self.model,
+            model="gpt-3.5-turbo"
             prompt=self.prompt.generate_prompt(),
             temperature=self.temperature,
             frequency_penalty=self.frequency_penalty,
